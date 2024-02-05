@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import storage from 'redux-persist/lib/storage';
 import { combineReducers } from '@reduxjs/toolkit'; // defaults to localStorage for web
 import { persistReducer } from 'redux-persist';
@@ -7,6 +8,8 @@ import { REDUX_SECRET_KEY } from 'src/utils/environments';
 
 import authSlice from 'src/store/slices/authSlice';
 
+import profileSlice from './profileSlice';
+
 const encryptor = encryptTransform({
   secretKey: REDUX_SECRET_KEY,
 });
@@ -14,7 +17,7 @@ const encryptor = encryptTransform({
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth', 'adminQuestionTypeSlice'],
+  whitelist: ['auth'],
   // blacklist: ["auth"],
   // stateReconciler: hardSet,
   transforms: [encryptor],
@@ -22,6 +25,7 @@ const persistConfig = {
 
 const rootReducers = combineReducers({
   auth: authSlice,
+  profile: profileSlice,
 });
 
 export default persistReducer(persistConfig, rootReducers);

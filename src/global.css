@@ -4,3 +4,362 @@
 .gm-ui-hover-effect {
     display: none !important;
 }
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+/* for table header */
+.rdt_TableHeadRow {
+    height: 3rem;
+    font-size: 16px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+/* for each individual cell */
+.rdt_TableCell {
+    font-size: 14px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-weight: 100 !important;
+}
+
+.popper-class {
+    z-index: 9999;
+}
+
+.custom {
+    width: 13rem;
+    height: 28px;
+    padding: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 2px;
+    border: 1px solid #eaeaea;
+    background-color: transparent;
+    color: #000000 !important;
+    /* border-color: #cbd5e0; */
+    border-radius: "0.375rem";
+    font-size: var(--chakra-fontSizes-sm);
+}
+
+.custom-date {
+    width: 14rem !important;
+}
+
+.form-date {
+    width: 235%;
+    height: 2.6rem;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ffffff;
+    background-color: transparent;
+    color: #000000 !important;
+    border-color: #cbd5e0;
+    border-radius: "0.375rem";
+}
+
+.form-date-contract {
+    width: 100%;
+    height: 2.6rem;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ffffff;
+    background-color: transparent;
+    color: #000000 !important;
+    border-color: #cbd5e0;
+    border-radius: "0.375rem";
+}
+
+.custom::placeholder {
+    font-size: 0.8rem;
+}
+
+.multi-select {
+    width: 13rem;
+    height: 2rem;
+    font-size: 0.8rem;
+    height: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.multi-select::placeholder {
+    font-size: 0.8rem;
+}
+
+.rmsc {
+    width: 13rem;
+    height: 2rem;
+    font-size: 0.8rem;
+    height: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.rmsc .dropdown-container {
+    height: 1.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.cropContainer {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-color: #333;
+}
+
+.selectReact {
+    height: 5px !important;
+    width: 13rem;
+    font-size: x-small;
+    padding: 0 !important;
+}
+
+.react-select-component {
+    height: 10px;
+}
+
+@media (min-width: 992px) and (max-width: 1080px) {
+    .react-date-picker {
+        width: 100%;
+    }
+}
+
+.terminateDate {
+    width: 100% !important;
+}
+
+.dataPicker-inner {
+    width: 49% !important;
+}
+
+.dataPicker-inner .form-date {
+    width: 100%;
+}
+
+.scoll-pane::-webkit-scrollbar {
+    display: none;
+}
+
+.react-datepicker-wrapper {
+    width: max-content;
+}
+
+.datePicker {
+    width: 100% !important;
+}
+
+.custom-date-picker {
+    width: var(--chakra-sizes-full);
+    min-width: 0px;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    position: relative;
+    appearance: none;
+    transition-property: var(--chakra-transition-property-common);
+    transition-duration: var(--chakra-transition-duration-normal);
+    font-weight: 400;
+    border-radius: var(--chakra-radii-md);
+    font-size: var(--chakra-fontSizes-md);
+    -webkit-padding-start: var(--chakra-space-4);
+    -webkit-padding-end: var(--chakra-space-4);
+    height: var(--chakra-sizes-10);
+    border-color: inherit;
+    background: inherit;
+    border: 1px solid #d6d6d6;
+}
+
+.datePickerWrapperr {
+    width: var(--chakra-sizes-lg);
+}
+
+.datePickerWrapper {
+    width: 100%;
+}
+
+.border-red {
+    border-color: #fc8181;
+    box-shadow: 0 0 0 1px #fc8181;
+}
+
+.overflow-scroll {
+    overflow-y: scroll;
+}
+
+.r-suit-date-picker input {
+    color: #000000;
+}
+
+.rs-picker-toggle-value {
+    color: gray !important;
+}
+
+.no-value-date-picker input {
+    color: #000000;
+}
+
+.no-value-date-picker .rs-picker-toggle-value {
+    color: rgb(3, 3, 3) !important;
+}
+
+.r-suit-date-picker .rs-picker-toggle-value {
+    color: gray;
+}
+
+.r-suit-date-picker {
+    border: 1px solid #ccc;
+    height: 100%;
+    border-radius: 4px;
+}
+
+/* .r-suit-date-picker input,
+.no-value-date-picker input {
+    display: none;
+} */
+
+.no-value-date-picker {
+    border: 1px solid #ccc;
+    height: 100%;
+    border-radius: 4px;
+}
+
+.r-suit-date-picker {
+    padding: 0px 0px;
+}
+
+.r-suit-date-picker:hover {
+    border: 1px solid #ccc;
+    border-color: #ccc !important;
+}
+
+.no-value-date-picker:hover {
+    border: 1px solid #ccc;
+    border-color: #ccc !important;
+}
+
+.rs-picker-default .rs-picker-toggle {
+    border: none;
+}
+
+.rs-picker-toggle,
+.rs-btn,
+.rs-btn-default,
+.rs-btn-lg,
+.rs-stack {
+    height: 100%;
+}
+
+.rs-stack-item svg {
+    display: none;
+}
+
+.rs-btn {
+    background: transparent !important;
+}
+
+.rs-picker-toggle-active {
+    border-color: transparent !important;
+}
+
+.rs-picker-default:focus,
+.rs-picker-default:focus-visible {
+    border: none !important;
+    background-color: transparent !important;
+    outline: none !important;
+}
+
+.single-picker {
+    width: 13rem !important;
+}
+
+.rs-picker-toggle-textbox {
+    padding: 4px 9px !important;
+}
+
+.rs-btn:focus-visible {
+    outline: none !important;
+}
+
+.rs-picker-toggle-active {
+    box-shadow: none !important;
+}
+
+.rs-picker-toggle-clean:hover {
+    color: #1ebcb3 !important;
+}
+
+.rs-picker-toolbar-right button {
+    color: white !important;
+    background-color: #1ebcb3 !important;
+}
+
+.rs-picker-default .rs-picker-toggle {
+    padding: 4px 9px !important;
+}
+
+.rs-picker-toggle-read-only {
+    opacity: 1;
+}
+
+.rs-calendar-header-month-toolbar svg {
+    display: block !important;
+}
+
+.sender-message-box {
+    border-radius: 8px 0px 8px 8px !important;
+    background-color: #2fc6bd !important;
+}
+
+.receiver-message-box {
+    border-radius: 0px 8px 8px 8px !important;
+    background-color: #f0f0f0 !important;
+}
+
+.sender-img-box {
+    border-radius: 25px !important;
+}
+
+.yarl__slide_image {
+    height: 400px !important;
+    width: 400px !important;
+}
+
+.custom-month-picker {
+    width: 100% !important;
+    padding: 16px;
+    border: 1px solid #c4c4c4;
+    border-radius: 4px;
+    cursor: pointer;
+    height: var(--chakra-sizes-10);
+}
+
+.react-datepicker-wrapper {
+    width: 100% !important;
+}
+
+.apexcharts-canvas {
+    margin: auto;
+}
+
+/* .apexcharts-legend {
+    max-width: 300px;
+} */
+
+.search-month-picker {
+    width: var(--chakra-sizes-2xs) !important;
+    padding: 16px;
+    border: 1px solid #c4c4c4 !important;
+    border-radius: 4px;
+    cursor: pointer;
+    height: var(--chakra-sizes-10);
+}
+
+.search-month-picker:focus-visible {
+    outline: none !important;
+    width: var(--chakra-sizes-2xs) !important;
+}
+
+.css-b62m3t-container {
+    width: 100% !important;
+}

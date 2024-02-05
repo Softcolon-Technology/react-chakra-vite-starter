@@ -1,4 +1,4 @@
-import logger from 'redux-logger';
+/* eslint-disable import/no-cycle */
 import { persistStore } from 'redux-persist';
 import { configureStore } from '@reduxjs/toolkit';
 
@@ -6,11 +6,9 @@ import { NODE_ENV } from 'src/utils/environments';
 
 import rootReducer from './slices';
 
-const middleWares: any = [NODE_ENV === 'development' && logger].filter(Boolean);
-
 export const store = configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(middleWares),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
   devTools: NODE_ENV !== 'production',
 });
 

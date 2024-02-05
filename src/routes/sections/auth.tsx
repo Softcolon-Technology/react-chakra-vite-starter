@@ -1,45 +1,40 @@
 import { lazy, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { GuestGuard } from 'src/auth/guard';
-import AuthClassicLayout from 'src/layouts/auth/classic';
-
-import { SplashScreen } from 'src/components/loading-screen';
+import GuestLayout from 'src/layouts/GuestLayout';
 
 // ----------------------------------------------------------------------
 
 // JWT
-const JwtLoginPage = lazy(() => import('src/pages/auth/jwt/login'));
-const JwtRegisterPage = lazy(() => import('src/pages/auth/jwt/register'));
+const JwtLoginPage = lazy(() => import('src/pages/auth/login'));
 
 // ----------------------------------------------------------------------
 
 export const authRoutes = [
   {
-    path: 'auth',
     element: (
-      <GuestGuard>
-        <Suspense fallback={<SplashScreen />}>
+      <GuestLayout>
+        <Suspense fallback={<div>Loading ...</div>}>
           <Outlet />
         </Suspense>
-      </GuestGuard>
+      </GuestLayout>
     ),
     children: [
       {
         path: 'login',
-        element: (
-          <AuthClassicLayout>
-            <JwtLoginPage />
-          </AuthClassicLayout>
-        ),
+        element: <JwtLoginPage />,
       },
       {
-        path: 'register',
-        element: (
-          <AuthClassicLayout title="Manage the job more effectively with Minimal">
-            <JwtRegisterPage />
-          </AuthClassicLayout>
-        ),
+        path: 'forgot-password',
+        element: <JwtLoginPage />,
+      },
+      {
+        path: 'reset-password/:token',
+        element: <JwtLoginPage />,
+      },
+      {
+        path: 'set-password/:token',
+        element: <JwtLoginPage />,
       },
     ],
   },

@@ -1,137 +1,112 @@
-import * as z from 'zod';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { Box, Flex, Link, Stack, useToast } from '@chakra-ui/react';
 
-import Link from '@mui/material/Link';
-import Alert from '@mui/material/Alert';
-import Stack from '@mui/material/Stack';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import LoadingButton from '@mui/lab/LoadingButton';
-import InputAdornment from '@mui/material/InputAdornment';
+//  redux
+
+import { useFormik } from 'formik';
+import { useTranslation } from 'react-i18next';
 
 import { paths } from 'src/routes/paths';
-import { RouterLink } from 'src/routes/components';
-import { useRouter, useSearchParams } from 'src/routes/hooks';
+import { useRouter } from 'src/routes/hooks';
 
-import { useBoolean } from 'src/hooks/use-boolean';
+import { LoginSchema } from 'src/validations/login.validation';
 
-import { PATH_AFTER_LOGIN } from 'src/config-global';
+import AdminHeader from 'src/components/header/AdminHeader';
+import LoginButton from 'src/components/button/LoginButton';
+import CustomInputLogin from 'src/components/form/CustomInputLogin';
+import CustomPasswordField from 'src/components/form/CustomPasswordField';
 
-import Iconify from 'src/components/iconify';
-import FormProvider, { RHFTextField } from 'src/components/hook-form';
-
-// ----------------------------------------------------------------------
-
-export default function JwtLoginView() {
+const LoginPage = () => {
   const router = useRouter();
+  const { t } = useTranslation();
+  const toast = useToast();
 
-  const [errorMsg, setErrorMsg] = useState('');
+  // useEffect(() => {
+  //     if (user && user.access_token) {
+  //         navigate("/dashboard");
+  //     }
+  // }, []);
 
-  const searchParams = useSearchParams();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const returnTo = searchParams.get('returnTo');
-
-  const password = useBoolean();
-
-  const LoginSchema = z.object({
-    email: z
-      .string()
-      .email('Email must be a valid email address')
-      .refine((data) => data.trim() !== '', { message: 'Email is required' }),
-    password: z.string().refine((data) => data.trim() !== '', { message: 'Password is required' }),
-  });
-
-  const defaultValues = {
-    email: 'demo@minimals.cc',
-    password: 'demo1234',
+  // submit handler
+  const onSubmit = async () => {
+    //
   };
 
-  const methods = useForm({
-    resolver: zodResolver(LoginSchema),
-    defaultValues,
-  });
-
   const {
-    reset,
+    values,
+    errors,
+    touched,
+    isSubmitting,
+    handleBlur,
+    handleChange,
     handleSubmit,
-    formState: { isSubmitting },
-  } = methods;
-
-  const onSubmit = handleSubmit(async (data) => {
-    try {
-      // await login?.(data.email, data.password);
-
-      router.push(returnTo || PATH_AFTER_LOGIN);
-    } catch (error) {
-      console.error(error);
-      reset();
-      setErrorMsg(typeof error === 'string' ? error : error.message);
-    }
+    resetForm,
+  } = useFormik({
+    initialValues: {
+      email: import.meta.env.VITE_APP_EMAIL ?? '',
+      password: import.meta.env.VITE_APP_PASSWORD ?? '',
+    },
+    validationSchema: LoginSchema(t),
+    onSubmit,
   });
-
-  const renderHead = (
-    <Stack spacing={2} sx={{ mb: 5 }}>
-      <Typography variant="h4">Sign in to Minimal</Typography>
-
-      <Stack direction="row" spacing={0.5}>
-        <Typography variant="body2">New user?</Typography>
-
-        <Link component={RouterLink} href={paths.auth.jwt.register} variant="subtitle2">
-          Create an account
-        </Link>
-      </Stack>
-    </Stack>
-  );
-
-  const renderForm = (
-    <Stack spacing={2.5}>
-      {!!errorMsg && <Alert severity="error">{errorMsg}</Alert>}
-
-      <RHFTextField name="email" label="Email address" />
-
-      <RHFTextField
-        name="password"
-        label="Password"
-        type={password.value ? 'text' : 'password'}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton onClick={password.onToggle} edge="end">
-                <Iconify icon={password.value ? 'solar:eye-bold' : 'solar:eye-closed-bold'} />
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      />
-
-      <Link variant="body2" color="inherit" underline="always" sx={{ alignSelf: 'flex-end' }}>
-        Forgot password?
-      </Link>
-
-      <LoadingButton
-        fullWidth
-        color="inherit"
-        size="large"
-        type="submit"
-        variant="contained"
-        loading={isSubmitting}
-      >
-        Login
-      </LoadingButton>
-    </Stack>
-  );
 
   return (
-    <FormProvider methods={methods} onSubmit={onSubmit}>
-      {renderHead}
+    <Flex align="center" mt={5} flexDir="column">
+      <AdminHeader />
+      {/* form  */}
 
-      <Alert severity="info" sx={{ mb: 3 }}>
-        Use email : <strong>demo@minimals.cc</strong> / password :<strong> demo1234</strong>
-      </Alert>
+      <Box rounded="lg" bg="white" boxShadow="lg" p={8} width="md">
+        <form onSubmit={handleSubmit} autoComplete="off">
+          <Stack spacing={4}>
+            <CustomInputLogin
+              label={String(t('login.email'))}
+              name="email"
+              Type="email"
+              values={values.email}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              errors={errors.email}
+              touched={touched.email}
+              isMandatory
+            />
 
-      {renderForm}
-    </FormProvider>
+            <CustomPasswordField
+              label={t('login.password')}
+              name="password"
+              value={values.password}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              errors={errors.password}
+              touched={touched.password}
+              isMandatory
+            />
+
+            <Stack spacing={10}>
+              <Stack
+                direction={{ base: 'column', sm: 'row' }}
+                align="start"
+                justify="space-between"
+              >
+                <Link
+                  color="blue.400"
+                  textDecoration="none"
+                  onClick={() => router.push(paths.auth.forgetPassword)}
+                >
+                  {`${t('login.forgot_password')}?`}
+                </Link>
+              </Stack>
+            </Stack>
+
+            <Stack spacing={10}>
+              <LoginButton label="login.login" isSubmitting={isLoading} />
+            </Stack>
+          </Stack>
+        </form>
+      </Box>
+    </Flex>
   );
-}
+};
+
+export default LoginPage;
