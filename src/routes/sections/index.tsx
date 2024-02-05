@@ -15,7 +15,7 @@ export default function Router() {
   return useRoutes([
     {
       path: '/',
-      element: <Navigate to={paths.auth.login} replace />,
+      element: <Navigate to={paths.dashboard.root} replace />,
     },
 
     // Auth routes

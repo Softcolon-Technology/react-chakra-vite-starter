@@ -9,8 +9,8 @@ const ROOTS = {
 export const paths = {
   // AUTH
   auth: {
-    login: `${ROOTS}/login`,
-    forgetPassword: `${ROOTS}/forgot-password`,
+    login: `/login`,
+    forgetPassword: `/forgot-password`,
   },
   // DASHBOARD
   dashboard: {
